@@ -30,7 +30,7 @@ jobs:
         run: ./gradlew assembleRelease --no-daemon
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: build/outputs/apk/release/app-release.apk
