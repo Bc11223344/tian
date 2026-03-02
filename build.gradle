@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.0'
+    }
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 33
+    buildToolsVersion "30.0.3"
+    
+    defaultConfig {
+        applicationId "com.tiandaonb"
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+    }
+    
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    // 解决可能出现的重复文件问题
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    
+    // dnsjava 用于解析DNS请求
+    implementation 'dnsjava:dnsjava:3.5.2'
+    
+    // 用于处理并发
+    implementation 'org.jetbrains:annotations:23.0.0'
+}
